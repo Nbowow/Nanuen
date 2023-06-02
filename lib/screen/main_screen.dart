@@ -22,11 +22,11 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
             right: 0,
             left: 0,
             child: Container(
-              padding: EdgeInsets.only(top: 90, left: 20),
+              padding: const EdgeInsets.only(top: 90),
               height: 300,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('image/red.jpg'),
+                  image: AssetImage('images/red.jpg'),
                   fit: BoxFit.fill,
                 ),
               ),
@@ -34,7 +34,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   RichText(
-                    text: TextSpan(
+                    text: const TextSpan(
                       text: 'Welcome',
                       style: TextStyle(
                         letterSpacing: 1.0,
@@ -54,10 +54,10 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5.0,
                   ),
-                  Text(
+                  const Text(
                     'Signup to continue',
                     style: TextStyle(
                       letterSpacing: 1.0,
@@ -68,13 +68,14 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
               ),
             ),
           ),
+          //배경
           Positioned(
             top: 180,
             child: Container(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               height: 280,
               width: MediaQuery.of(context).size.width - 40,
-              margin: EdgeInsets.symmetric(horizontal: 20.0),
+              margin: const EdgeInsets.symmetric(horizontal: 20.0),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(15.0),
@@ -112,7 +113,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                             ),
                             if (!isSignupScreen) //inline if
                               Container(
-                                margin: EdgeInsets.only(top: 3),
+                                margin: const EdgeInsets.only(top: 3),
                                 height: 2,
                                 width: 55,
                                 color: Colors.orange,
@@ -140,7 +141,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                             ),
                             if (isSignupScreen)
                               Container(
-                                margin: EdgeInsets.only(top: 3),
+                                margin: const EdgeInsets.only(top: 3),
                                 height: 2,
                                 width: 55,
                                 color: Colors.orange,
@@ -151,12 +152,12 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                     ],
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 20),
+                    margin: const EdgeInsets.only(top: 20),
                     child: Form(
                       child: Column(
                         children: [
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               prefixIcon: Icon(
                                 Icons.account_circle,
                                 color: Palette.iconColor,
@@ -185,8 +186,11 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                               contentPadding: EdgeInsets.all(10),
                             ),
                           ),
+                          const SizedBox(
+                            height: 8,
+                          ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               prefixIcon: Icon(
                                 Icons.account_circle,
                                 color: Palette.iconColor,
@@ -215,8 +219,11 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                               contentPadding: EdgeInsets.all(10),
                             ),
                           ),
+                          const SizedBox(
+                            height: 8,
+                          ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               prefixIcon: Icon(
                                 Icons.account_circle,
                                 color: Palette.iconColor,
@@ -252,6 +259,52 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                 ],
               ),
             ),
+          ),
+          //텍스트 폼 필드
+          Positioned(
+            top: 430,
+            right: 0,
+            left: 0,
+            child: Center(
+              child: Container(
+                padding: const EdgeInsets.all(15),
+                height: 90,
+                width: 90,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(50),
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      colors: [
+                        Colors.orange,
+                        Colors.red,
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    borderRadius: BorderRadius.circular(30),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.3),
+                        spreadRadius: 1,
+                        blurRadius: 1,
+                        offset: const Offset(0, 1),
+                      ),
+                    ],
+                  ),
+                  child: const Icon(
+                    Icons.arrow_forward,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          //전송버튼
+          Positioned(
+            child: child,
           ),
         ],
       ),

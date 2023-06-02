@@ -1,9 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterfire_ui/auth.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk_user.dart';
-import 'package:nanuen_sns_login/chat_screen.dart';
 import 'package:nanuen_sns_login/screen/main_screen.dart';
 
 void main() async {
@@ -29,7 +26,7 @@ class MyApp extends StatelessWidget {
       //home: const App(),
       //home: const KakaoMain(),
       //home: const LoginPage(),
-      home: LoginSignupScreen(),
+      home: const LoginSignupScreen(),
     );
   }
 }
