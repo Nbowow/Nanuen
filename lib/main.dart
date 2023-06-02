@@ -8,7 +8,7 @@ import 'package:nanuen_sns_login/chat_screen.dart';
 void main() async {
   KakaoSdk.init(nativeAppKey: '76e93a7e6dad66a0b2d3f68f72ae66e7');
   WidgetsFlutterBinding
-      .ensureInitialized(); //flutter에서 firebase를 사용하려면 반드시 비동기 방식으로 플러터 엔진 초기화
+      .ensureInitialized(); //flutter�뿉�꽌 firebase瑜� �궗�슜�븯�젮硫� 諛섎뱶�떆 鍮꾨룞湲� 諛⑹떇�쑝濡� �뵆�윭�꽣 �뿏吏� 珥덇린�솕
   await Firebase.initializeApp();
   runApp(const MyApp());
 }
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   // This widget is the root of your application.
-  @override
+  @override //alt + shift + f => 코드 정리(format document)
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
@@ -50,10 +50,10 @@ class Authentication extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder(
       stream: FirebaseAuth.instance
-          .authStateChanges(), //사용자가 로그인/로그아웃을 할때마다 state가 변화하고 builder메소드를 통해 새롭게 화면 그리기 가능
+          .authStateChanges(), //�궗�슜�옄媛� 濡쒓렇�씤/濡쒓렇�븘�썐�쓣 �븷�븣留덈떎 state媛� 蹂��솕�븯怨� builder硫붿냼�뱶瑜� �넻�빐 �깉濡�寃� �솕硫� 洹몃━湲� 媛��뒫
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          //data 없을때 > 로그인 화면
+          //data �뾾�쓣�븣 > 濡쒓렇�씤 �솕硫�
           return const SignInScreen(
             providerConfigs: [EmailProviderConfiguration()],
           );
