@@ -11,6 +11,19 @@ class LoginSignupScreen extends StatefulWidget {
 
 class _LoginSignupScreenState extends State<LoginSignupScreen> {
   bool isSignupScreen = true;
+  final _formKey = GlobalKey<FormState>();
+  String userName = '';
+  String userEmail = '';
+  String userPassword = '';
+
+  void _tryValidation() {
+    final isValid =
+        _formKey.currentState!.validate(); //Î™®Îì† ÌÖçÏä§Ìä∏ ÌèºÌïÑÎìúÏùò validator ÏûëÎèô Í∞ÄÎä•
+    if (isValid) {
+      _formKey.currentState!.save();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,7 +83,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
               ),
             ),
           ),
-          //πË∞Ê
+          //Î∞∞Í≤Ω
           AnimatedPositioned(
             duration: const Duration(milliseconds: 500),
             curve: Curves.easeIn,
@@ -114,7 +127,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                                 color: !isSignupScreen
                                     ? Palette.activeColor
                                     : Palette.textColor1,
-                                //isSignUpScreen¿œ ∞ÊøÏ activeColor, æ∆¥“∞ÊøÏ textColor1 - ªÔ«◊¡∂∞« ø¨ªÍ¿⁄
+                                //isSignUpScreenÏùº Í≤ΩÏö∞ activeColor, ÏïÑÎãêÍ≤ΩÏö∞ textColor1 - ÏÇºÌï≠Ï°∞Í±¥ Ïó∞ÏÇ∞Ïûê
                               ),
                             ),
                             if (!isSignupScreen) //inline if
@@ -161,9 +174,20 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                     Container(
                       margin: const EdgeInsets.only(top: 20),
                       child: Form(
+                        key: _formKey,
                         child: Column(
                           children: [
                             TextFormField(
+                              key: const ValueKey(1),
+                              validator: (value) {
+                                if (value!.isEmpty || value.length < 4) {
+                                  return 'Please enter at least 4 characters';
+                                }
+                                return null;
+                              },
+                              onSaved: (value) {
+                                userName = value!;
+                              },
                               decoration: const InputDecoration(
                                 prefixIcon: Icon(
                                   Icons.account_circle,
@@ -197,6 +221,16 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                               height: 8,
                             ),
                             TextFormField(
+                              key: const ValueKey(2),
+                              validator: (value) {
+                                if (value!.isEmpty || !value.contains('@')) {
+                                  return 'Please enter a valid email address.';
+                                }
+                                return null;
+                              },
+                              onSaved: (value) {
+                                userEmail = value!;
+                              },
                               decoration: const InputDecoration(
                                 prefixIcon: Icon(
                                   Icons.email,
@@ -230,6 +264,16 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                               height: 8,
                             ),
                             TextFormField(
+                              key: const ValueKey(3),
+                              validator: (value) {
+                                if (value!.isEmpty || value.length < 6) {
+                                  return 'Password must be at least 7 characters long.';
+                                }
+                                return null;
+                              },
+                              onSaved: (value) {
+                                userPassword = value!;
+                              },
                               decoration: const InputDecoration(
                                 prefixIcon: Icon(
                                   Icons.lock,
@@ -267,9 +311,20 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                     Container(
                       margin: const EdgeInsets.only(top: 20),
                       child: Form(
+                        key: _formKey,
                         child: Column(
                           children: [
                             TextFormField(
+                              key: const ValueKey(4),
+                              validator: (value) {
+                                if (value!.isEmpty || !value.contains('@')) {
+                                  return 'Please enter a valid email address.';
+                                }
+                                return null;
+                              },
+                              onSaved: (value) {
+                                userEmail = value!;
+                              },
                               decoration: const InputDecoration(
                                 prefixIcon: Icon(
                                   Icons.email,
@@ -303,6 +358,16 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                               height: 8,
                             ),
                             TextFormField(
+                              key: const ValueKey(5),
+                              validator: (value) {
+                                if (value!.isEmpty || value.length < 6) {
+                                  return 'Password must be at least 7 characters long.';
+                                }
+                                return null;
+                              },
+                              onSaved: (value) {
+                                userPassword = value!;
+                              },
                               decoration: const InputDecoration(
                                 prefixIcon: Icon(
                                   Icons.lock,
@@ -340,7 +405,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
               ),
             ),
           ),
-          //≈ÿΩ∫∆Æ ∆˚ « µÂ
+          //ÌÖçÏä§Ìä∏ Ìèº ÌïÑÎìú
           AnimatedPositioned(
             duration: const Duration(milliseconds: 500),
             curve: Curves.easeIn,
@@ -356,35 +421,40 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(50),
                 ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [
-                        Colors.orange,
-                        Colors.red,
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                    borderRadius: BorderRadius.circular(30),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.3),
-                        spreadRadius: 1,
-                        blurRadius: 1,
-                        offset: const Offset(0, 1),
+                child: GestureDetector(
+                  onTap: () {
+                    _tryValidation();
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        colors: [
+                          Colors.orange,
+                          Colors.red,
+                        ],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
                       ),
-                    ],
-                  ),
-                  child: const Icon(
-                    Icons.arrow_forward,
-                    color: Colors.white,
+                      borderRadius: BorderRadius.circular(30),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.3),
+                          spreadRadius: 1,
+                          blurRadius: 1,
+                          offset: const Offset(0, 1),
+                        ),
+                      ],
+                    ),
+                    child: const Icon(
+                      Icons.arrow_forward,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
             ),
           ),
-          //¿¸º€πˆ∆∞
+          //Ï†ÑÏÜ°Î≤ÑÌäº
           Positioned(
             top: MediaQuery.of(context).size.height - 125,
             right: 0,
