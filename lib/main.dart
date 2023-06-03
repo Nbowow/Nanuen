@@ -5,8 +5,7 @@ import 'package:nanuen_sns_login/screen/main_screen.dart';
 
 void main() async {
   KakaoSdk.init(nativeAppKey: '76e93a7e6dad66a0b2d3f68f72ae66e7');
-  WidgetsFlutterBinding
-      .ensureInitialized(); //flutter�뿉�꽌 firebase瑜� �궗�슜�븯�젮硫� 諛섎뱶�떆 鍮꾨룞湲� 諛⑹떇�쑝濡� �뵆�윭�꽣 �뿏吏� 珥덇린�솕
+  WidgetsFlutterBinding.ensureInitialized(); //flutter 코어 엔진 초기화
   await Firebase.initializeApp();
   runApp(const MyApp());
 }
@@ -18,6 +17,7 @@ class MyApp extends StatelessWidget {
   @override //alt + shift + f => 코드 정리(format document)
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
 //   Widget build(BuildContext context) {
 //     return StreamBuilder(
 //       stream: FirebaseAuth.instance
-//           .authStateChanges(), //�궗�슜�옄媛� 濡쒓렇�씤/濡쒓렇�븘�썐�쓣 �븷�븣留덈떎 state媛� 蹂��솕�븯怨� builder硫붿냼�뱶瑜� �넻�빐 �깉濡�寃� �솕硫� 洹몃━湲� 媛��뒫
+//           .authStateChanges(),
 //       builder: (context, snapshot) {
 //         if (!snapshot.hasData) {
 //           //data �뾾�쓣�븣 > 濡쒓렇�씤 �솕硫�
